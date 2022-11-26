@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc
+                                 https://www.springframework.org/schema/mvc/spring-mvc.xsd
+                                 http://www.springframework.org/schema/beans
+                                 https://www.springframework.org/schema/beans/spring-beans.xsd
+                                 http://www.springframework.org/schema/context
+                                 https://www.springframework.org/schema/context/spring-context.xsd">
+                                 
+	<!-- spring으로 바꾸기 M(dao,dto) v(jsp) c(controller)
+		 xmlns(ns는 namespace의 약자) --> 
+	<!-- xml은 총 세개가 있는데 servlet-context(spring MVC에 관련된 설정)는 servlet의 전체에 관련된 것
+			root-context는 프로젝트 작업시 필요한 bean들 정의 하는 곳 
+			-->                                
+	<!-- bean 이란 spring container(클라우드 같은 것-한번만 정의하여 띄워놓고 쓰는 곳)에 띄우기 위한 것들을 정의하는 것 -->    
+	                            
+	
+</beans:beans>

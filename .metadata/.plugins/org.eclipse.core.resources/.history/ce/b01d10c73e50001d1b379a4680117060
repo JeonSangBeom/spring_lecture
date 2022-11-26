@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc
+                                 https://www.springframework.org/schema/mvc/spring-mvc.xsd
+                                 http://www.springframework.org/schema/beans
+                                 https://www.springframework.org/schema/beans/spring-beans.xsd
+                                 http://www.springframework.org/schema/context
+                                 https://www.springframework.org/schema/context/spring-context.xsd">
+                                 
+                                
+	<!-- scan한 패키지 내부의 클래스 중 Controller annotaion을 자기고 있는 Class를 Controller로 로딩시키기. -->  
+	<!-- 메인 스페이스가 지정이 된 순간에는 단축키가 적용 된다 - 위에 길게 지정한 것들 -->                             
+	<annotation-driven />
+	
+	<!-- 스프링에게 미리 알려주는 패키지 / scan할 패키지를 정의 -->
+	<context:component-scan base-package="com.jjang051.controller" />
+	
+	<!-- view rosolver 정의 -->
+	<!--  class = spring에 미리 다 정의되어 그냥 가져오면 된다 -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- 정적 파일 세팅.... css/imgaes/js  한번 쓰면 바뀌지 앟는 파일들-->
+	<resources location="/resources/" mapping="/**"></resources>
+</beans:beans>

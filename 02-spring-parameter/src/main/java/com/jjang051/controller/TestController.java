@@ -1,0 +1,118 @@
+package com.jjang051.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+//sysout으로 데이터 넘어오는 것 확인하기
+@Controller
+public class TestController {
+	
+	//일반적인 request 방식
+	@GetMapping("/Parameter01.do")
+	public String parameter01(HttpServletRequest request) {//HttpServletRequest request - 데이터 받을때 사용(상속받은게 아니기 때문에 이런식으로 필요한 것만 사용해도 상관 없다)
+		
+		String data01 = request.getParameter("data01");
+		String data02 = request.getParameter("data02");
+		String[] data03 = request.getParameterValues("data03"); // 배열로 받을때 사용(같은 키로 다른 값이 나오기 때문에)
+		System.out.println("data01==="+data01);
+		System.out.println("data02==="+data02);
+		System.out.println("data03==="+data03);
+		System.out.println("data01+data02==="+(data01+data02)); // string이기 때문에 1020출력
+		
+		for(String str:data03) {
+			System.out.println("data03==="+str);
+		}// 두개가 전부 나온다 - data03에 두개의 값이
+		
+		return "parameter01";
+	}
+	
+	//Spring에서 제공한 Annotation을 이용한 request 방식
+	@GetMapping("/Parameter02.do")
+	public String parameter02(@RequestParam(value="data01") int data01, //Annotation인 RequsetParam으로 사용하면 타입 설정이 가능 
+			                  @RequestParam(value="data02") int data02, // data02로 값이 넘어오면 int로 받아서 사용
+			                  @RequestParam(value="data03") int[] data03
+			                 ) {
+		
+		System.out.println("data01==="+data01);
+		System.out.println("data02==="+data02);
+		System.out.println("data03==="+data03);
+		System.out.println("data01+data02==="+(data01+data02));
+		for(int temp:data03) {
+			System.out.println("data03==="+temp);
+		}
+		return null; // jsp안보기 때문에 null 넘기기(sysout으로 데이터가 넘어오는 것을 확인하기 위한 것이기 때문에) 
+	}
+	
+	//Servlet에서는 request로 받아서 형변환해야하는데 스프링에는 @RequestParam 이라는 Annotation을 사용할 수 있다
+	
+	//넘어오는 데이터의 이름이 같을 경우
+	@GetMapping("/Parameter03.do")
+	public String parameter03(int data01,
+			                  int data02,
+			                  int[] data03
+			                 ) { // 데이터가 같으면 생략이 가능하다
+		
+		System.out.println("data01==="+data01);
+		System.out.println("data02==="+data02);
+		System.out.println("data03==="+data03);
+		System.out.println("data01+data02==="+(data01+data02));
+		for(int temp:data03) {
+			System.out.println("data03==="+temp);
+		}
+		return null;
+	}
+	
+	//form형식으로 넘어왔을때 - 차이는 없다 (연습)
+	@GetMapping("/Parameter04.do")	
+	public String parameter04(@RequestParam(value="data01") int data01,
+							  @RequestParam(value="data02") int data022,
+							  @RequestParam(value="data03") int[] data03
+			                 ) {
+	/*public String parameter04(int data01,
+				              int data02,
+				              int[] data03
+               ) {*/
+		System.out.println("data01==="+data01);
+		System.out.println("data02==="+data022);
+		System.out.println("data03==="+data03);
+		System.out.println("data01+data02==="+(data01+data022));
+		for(int temp:data03) {
+			System.out.println("data03==="+temp);
+		}
+		return null;
+	}
+	
+	//데이터가 안넘오올떄 발생하는 오류 처리 방법
+	//null로 들어오면 앞단에서  숫자 javascript로 걸러서 보내주는게 좋다...
+	@GetMapping("/Parameter05.do")
+	public String parameter05(@RequestParam(value ="data01") int data01,
+			                  @RequestParam(required = false) String data02,// required 실수 데이터가 안넘어와도 될때 사용
+			                  @RequestParam(defaultValue = "0") int[] data03 // defaultValue는 무조건 스트링이 넘어와야한다
+               ) {
+		System.out.println("data01==="+data01);
+		System.out.println("data02==="+data02);
+		System.out.println("data03==="+data03);
+		System.out.println("data01+data02==="+(data01+data02));
+		for(int temp:data03) {
+			System.out.println("data03==="+temp);
+		}
+		return null;
+	}
+	
+	//서버 api-server를 만들때 주로 사용 (서버가 프론트를 관여하지 않고 데이터만 던져주기 / 알아서 처리하게) - 설계 방식이 따로 있다
+	//@GetMapping("/tv/show"(예시)) - rest형식 - 매핑 되는 주소(tv에서 show라는 변수에 데이터 값을 넘겨서 보내기)가 전부 변수로 넘어갈때
+	@GetMapping("/parameter/{data01}/{data02}/{data03}") // 이 규칙에 맞춰서 넘겨줘야한다 - 전부 데이터로 받겠단 뜻
+	public String parameter06(@PathVariable int data01, //@PathVariable를 사용해야 가능 - 순서대로 변수에 담기
+							  @PathVariable int data02,
+							  @PathVariable int data03) {
+		System.out.println("data01===" + data01);
+		System.out.println("data02===" + data02);
+		System.out.println("data03===" + data03);
+		return null;
+	}
+	//@PathVariable
+}
+

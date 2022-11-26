@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Hello Spring</h1>
+	<!-- <img src="images/layout/spring_logo.png"> -->
+<!-- 	a태그에서 get방식으로 넘길때에는 ? 사용 (쿼리 스트링) -->
+	<ul> 
+		<li><a href="Parameter01.do?data01=10&data02=20&data03=30&data03=40">parameter01-query-sting으로 데이터 보내보기</a></li>
+		<li><a href="Parameter02.do?data01=10&data02=20&data03=30&data03=40">parameter02-query-sting으로 데이터 보내보기</a></li>
+		<li><a href="Parameter03.do?data01=10&date02=20&data03=30&data03=40">parameter03-query-sting으로 데이터 보내보기</a></li>
+		<li><a href="parameter/10/20/30">parameter06-rest로 데이터 보내기</a></li>
+		<!-- data03=30&data03=40 - 똑같은 데이터를 날리면 뒤에 것이 나온다(이럴땐 배열로 받아야한다) -->
+	</ul>
+	
+	<form method="GET" action="Parameter03.do"> 
+		<legend>Parameter03.do</legend>
+		<div><label><span>data01</span><input type="text" name="data01"></label></div>
+		<div><label><span>data02</span><input type="text" name="data02"></label></div>
+		<div>
+			<label><span>data03-30</span><input type="checkbox" name="data03" value="30"></label>
+			<label><span>data03-40</span><input type="checkbox" name="data03" value="40"></label>
+		</div>
+		<button>Parameter03.do로 전송</button>
+	</form>
+	<hr />
+	<form method="GET" action="Parameter04.do">
+		<legend>Parameter04.do</legend>
+		<div><label><span>data01</span><input type="text" name="data01"></label></div>
+		<div><label><span>data02</span><input type="text" name="data02"></label></div>
+		<div>
+			<label><span>data03-30</span><input type="checkbox" name="data03" value="30"></label>
+			<label><span>data03-40</span><input type="checkbox" name="data03" value="40"></label>
+		</div>
+		<button>Parameter04.do로 전송</button>
+	</form>
+	<hr />
+	<form method="GET" action="Parameter05.do">
+		<legend>Parameter05.do</legend>
+		<div><label><span>data01</span><input type="text" name="data01"></label></div>
+		<div><label><span>data02</span><input type="text" name="data02"></label></div>
+		<div>
+			<label><span>data03-30</span><input type="checkbox" name="data03" value="30"></label>
+			<label><span>data03-40</span><input type="checkbox" name="data03" value="40"></label>
+		</div>
+		<button>Parameter05.do로 전송</button>
+	</form>
+	
+	
+</body>
+</html>
+

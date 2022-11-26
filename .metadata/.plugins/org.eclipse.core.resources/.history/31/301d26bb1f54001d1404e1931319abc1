@@ -1,0 +1,59 @@
+package com.jjang051.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.jjang051.model.BoardDto;
+import com.jjang051.model.DataDto;
+import com.jjang051.model.MemberDto;
+
+@Controller
+public class TestController {
+	
+	@PostMapping("/Test01.do")	
+	//public String test01(@ModelAttribute DataDto dataDto) {
+	public String test01(DataDto data) {
+		System.out.println("data01==="+data.getData01());
+		System.out.println("data02==="+data.getData02());
+		//콘솔창 출력 index에서 form으로 보내준 것(DataDto에서 값 얻어오기)
+		return "test01";// 이걸로 송출 (view)
+	}
+
+	//  @ModelAttribute로 받은 command 객체는 HttpRequest(setAttribute)에 자동으로 실린다. return되는 위치에서 사용할 경우엔 클래스 타입인 DataDto에서 첫글자만 소문자로 사용하면 된다.
+	//  @ModelAttribute는 생략 가능하다.
+	@PostMapping("/MemberTest.do")
+	//public String test01(@ModelAttribute DataDto dataDto) {
+	public String memberTest(MemberDto memberDto) {
+		System.out.println("no==="+memberDto.getNo());
+		System.out.println("id==="+memberDto.getId());
+		System.out.println("name==="+memberDto.getName());
+		System.out.println("password==="+memberDto.getPassword());
+		return "member";
+	}
+	
+	//만약  이름을 바꾸어야 한다면 @ModelAttribute("testDto")게 하면 된다.
+		@PostMapping("/MemberTest02.do")
+	public String test01(@ModelAttribute("testDto") MemberDto memberDto) {
+	
+		System.out.println("no==="+memberDto.getNo());
+		System.out.println("id==="+memberDto.getId());
+		System.out.println("name==="+memberDto.getName());
+		System.out.println("password==="+memberDto.getPassword());
+		return "member02";
+	}
+	
+	@PostMapping("/BoardTest.do")
+	public String boardTest01(BoardDto boardDto) {
+	
+		System.out.println("no==="+boardDto.getNo());
+		System.out.println("subject==="+boardDto.getSubject());
+		System.out.println("name==="+boardDto.getName());
+		System.out.println("password==="+boardDto.getPassword());
+		System.out.println("regDate==="+boardDto.getRegDate());
+		return "board";
+	}
+	
+	
+}
+

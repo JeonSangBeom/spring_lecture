@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="wizardPage">
+		<list key="groupId">
+			<item value="13-spring-reply-gallery"/>
+			<item value="12-spring-corona"/>
+			<item value="11-spring-todo-list"/>
+			<item value="10-spring-member"/>
+			<item value="07-spring-redirect-forward"/>
+			<item value="06-spring-form01"/>
+			<item value="05-spring-command-object"/>
+			<item value="04-spring-viewresolver"/>
+			<item value="03-spring-parameter-object"/>
+			<item value="02-spring-parameter"/>
+			<item value="01-spring-mapping"/>
+			<item value="spring_setting_java"/>
+			<item value="Spring_setting_xml"/>
+		</list>
+		<list key="name">
+		</list>
+		<list key="artifactId">
+			<item value="13-spring-reply-gallery"/>
+			<item value="12-spring-corona"/>
+			<item value="11-spring-todo-list"/>
+			<item value="10-spring-member"/>
+			<item value="07-spring-redirect-forward"/>
+			<item value="06-spring-form01"/>
+			<item value="05-spring-command-object"/>
+			<item value="04-spring-viewresolver"/>
+			<item value="03-spring-parameter-object"/>
+			<item value="02-spring-parameter"/>
+			<item value="01-spring-mapping"/>
+			<item value="spring_setting_java"/>
+			<item value="Spring_setting_xml"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+</section>

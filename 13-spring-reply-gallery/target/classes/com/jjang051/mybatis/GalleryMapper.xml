@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jjang051.mybatis.gallery">
+	<insert id="insertGallery" parameterType="GalleryDto">
+		INSERT INTO GALLERY VALUES (
+										SEQ_GALLERY.NEXTVAL,
+										#{title},
+										#{contents},
+										#{img},
+										#{realImg},
+										#{category}
+								   )
+	</insert>
+	<select id="getAllList02" resultType="GalleryDto">
+		<![CDATA[
+			SELECT NO,TITLE,CONTENTS,IMG,REALIMG,CATEGORY,
+	    		(SELECT COUNT(*) AS REPLYCOUNT FROM GALLERYREPLY WHERE BOARDID = GALLERY.NO) AS REPLYCOUNT 
+			FROM GALLERY ORDER BY NO DESC
+		]]>
+		<!-- 서브쿼리 사용하여 gallery 테이블 안에 추가
+			/ 꺽새를 사용하거나 cdata를 사용  -->
+	</select>
+	
+	<!-- VIEW로 만든 것 사용(테이블의 특정 영역만 볼 수 있는 특이한 테이블) -->
+	<select id="getAllList" resultType="GalleryDto">
+		 <!-- SELECT * FROM GALLERYANDREPLY-->
+		SELECT * FROM GALLERY ORDER BY NO DESC
+	</select>
+	
+	<insert id="insertReply" parameterType="ReplyDto">
+			INSERT INTO GALLERYREPLY VALUES (
+												SEQ_GALLERYREPLY.NEXTVAL,
+												#{boardId},
+												#{reply}
+			                                )
+	</insert>
+	
+	<select id="getAllReply" parameterType="Integer" resultType="ReplyDto">
+		SELECT * FROM GALLERYREPLY WHERE BOARDID = #{boardId} ORDER BY NO DESC
+	</select>
+	
+	<!-- reply삭제 -->
+	<delete id="deleteReply" parameterType="Integer">
+		DELETE FROM GALLERYREPLY WHERE NO = #{no}
+	</delete>
+	
+	<!-- gallery 삭제 -->
+	<delete id="deleteGallery" parameterType="Integer">
+		DELETE FROM GALLERY WHERE NO = #{no}
+	</delete>
+</mapper>
+
